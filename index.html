@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg-color: #060913;
-            --card-bg: rgba(14, 19, 32, 0.8);
+            --card-bg: rgba(14, 19, 32, 0.85);
             --border-color: rgba(0, 242, 254, 0.3);
             --primary: #00f2fe;
             --secondary: #4facfe;
@@ -87,18 +87,23 @@
 
     <script>
         let allCoinsData = [];
-        let usdtTomanPrice = 60000; // مقدار پایه تتر برای تبدیل دلاری
+        let usdtTomanPrice = 60000; 
 
         async function fetchExirData() {
             const grid = document.getElementById('crypto-grid');
             const statusText = document.getElementById('status-text');
 
             try {
-                // اتصال مستقیم به API صرافی اکسیر
-                const response = await fetch('https://api.exir.io/v2/tickers');
-                if (!response.ok) throw new Error('خطا در دریافت پاسخ از سرور اکسیر');
+                // استفاده از پروکسی امن برای عبور از خطای CORS مرورگر و گیت‌هاب
+                const targetUrl = 'https://api.exir.io/v2/tickers';
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
                 
-                const data = await response.json();
+                const response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error('خطا در دریافت پاسخ از سرور');
+                
+                const json = await response.json();
+                const data = JSON.parse(json.contents);
+
                 allCoinsData = Object.keys(data).map(symbol => {
                     return {
                         symbol: symbol.toUpperCase(),
@@ -121,7 +126,7 @@
             } catch (error) {
                 console.error(error);
                 statusText.innerText = "خطا در اتصال به اکسیر";
-                grid.innerHTML = `<div class="error">خطا در برقراری ارتباط با صرافی اکسیر. لطفاً اینترنت خود را بررسی کنید یا بعداً تلاش نمایید.</div>`;
+                grid.innerHTML = `<div class="error">خطا در برقراری ارتباط با صرافی اکسیر. لطفاً اینترنت خود را بررسی کنید یا چند لحظه دیگر دوباره تلاش کنید.</div>`;
             }
         }
 
@@ -138,12 +143,9 @@
                 let priceInToman = 0;
                 let basePriceDisplay = coin.last.toLocaleString();
 
-                // اگر جفت ارز بر پایه تومان یا ریال باشد
                 if (coin.symbol.includes('-IRT') || coin.symbol.includes('-TMN')) {
                     priceInToman = coin.last;
-                } 
-                // اگر جفت ارز بر پایه تتر باشد
-                else if (coin.symbol.includes('-USDT')) {
+                } else if (coin.symbol.includes('-USDT')) {
                     priceInToman = coin.last * usdtTomanPrice;
                 }
 
@@ -177,10 +179,7 @@
             renderCoins(filtered);
         }
 
-        // دریافت اولیه اطلاعات هنگام لود صفحه
         fetchExirData();
-
-        // به‌روزرسانی خودکار هر ۳۰ ثانیه
         setInterval(fetchExirData, 30000);
     </script>
 </body>
