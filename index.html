@@ -3,184 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صرافی ارز دیجیتال مهرسام گیمر</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>صرافی ارز دیجیتال مهرسام گیمر ⭐ (Nobitex Live)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Vazirmatn -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #060913;
-            --card-bg: rgba(14, 19, 32, 0.85);
-            --border-color: rgba(0, 242, 254, 0.3);
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --accent: #ff007f;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --green: #10b981;
-            --red: #ef4444;
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; padding: 20px; background-image: radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.07) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(255, 0, 127, 0.07) 0%, transparent 40%); }
-
-        .container { max-width: 1200px; margin: 0 auto; }
-
-        header { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--border-color); padding: 20px 30px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); flex-wrap: wrap; gap: 15px; }
-        .logo-area h1 { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .logo-area span { font-size: 11px; color: var(--text-muted); font-weight: 700; display: block; margin-top: 3px; }
-
-        .status-badge { display: flex; align-items: center; gap: 8px; background: rgba(0, 242, 254, 0.1); border: 1px solid rgba(0, 242, 254, 0.3); padding: 8px 16px; border-radius: 30px; font-size: 12px; font-weight: 700; color: var(--primary); }
-        .pulse { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 1.5s infinite; }
-
-        @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.8; } }
-
-        .controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 15px; flex-wrap: wrap; }
-        .search-box { flex: 1; min-width: 250px; position: relative; }
-        .search-box input { width: 100%; background: var(--card-bg); border: 1px solid var(--border-color); padding: 12px 20px 12px 45px; border-radius: 14px; color: #fff; font-size: 14px; outline: none; transition: 0.3s; }
-        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(0,242,254,0.3); }
-
-        .refresh-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; color: #000; font-weight: 900; padding: 12px 24px; border-radius: 14px; cursor: pointer; transition: 0.3s; font-size: 13px; box-shadow: 0 0 15px rgba(0,242,254,0.4); }
-        .refresh-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-
-        .crypto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .crypto-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 20px; padding: 22px; transition: 0.3s; box-shadow: 0 8px 25px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
-        .crypto-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 12px 35px rgba(0, 242, 254, 0.2); }
-        
-        .crypto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .crypto-name { font-size: 16px; font-weight: 700; color: #fff; }
-        .crypto-symbol { font-size: 11px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 8px; font-weight: 600; }
-
-        .crypto-prices { display: flex; flex-direction: column; gap: 8px; }
-        .price-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
-        .price-label { color: var(--text-muted); }
-        .price-value { font-weight: 700; font-size: 14px; color: #fff; }
-        .price-toman { color: var(--primary); font-weight: 900; font-size: 15px; }
-
-        .loading, .error { grid-column: 1 / -1; text-align: center; padding: 50px; font-size: 15px; color: var(--text-muted); background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color); }
-        .error { color: var(--red); }
     </style>
 </head>
-<body>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
 
-    <div class="container">
-        <header>
-            <div class="logo-area">
-                <h1>صرافی ارز دیجیتال مهرسام گیمر</h1>
-                <span>متصل به داده‌های رسمی صرافی اکسیر ⭐ MEHRSAM GAMER</span>
+    <!-- Header / Navbar -->
+    <header class="glass-card sticky top-0 z-50 border-b border-amber-500/30 px-4 py-3 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-amber-500 to-yellow-300 p-2.5 rounded-2xl text-gray-950 shadow-lg shadow-amber-500/30 animate-pulse">
+                    <i class="fa-solid fa-gamepad text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+                        صرافی ارز دیجیتال مهرسام گیمر ⭐
+                    </h1>
+                    <p class="text-xs text-gray-400">مرکز تخصصی معاملات و قیمت لحظه‌ای ارزهای دیجیتال (متصل به نوبیتکس)</p>
+                </div>
             </div>
-            <div class="status-badge">
-                <div class="pulse"></div>
-                <span id="status-text">برقراری ارتباط با اکسیر...</span>
-            </div>
-        </header>
 
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="جستجوی ارز (مثال: btc, usdt, eth)..." onkeyup="filterCoins()">
+            <!-- Status & Controls -->
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <div id="connection-status" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-medium">
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-ping"></span>
+                    <span>در حال اتصال به نوبیتکس...</span>
+                </div>
+                <button onclick="fetchNobitexData()" class="bg-amber-500 hover:bg-amber-400 text-gray-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2 cursor-pointer">
+                    <i id="refresh-icon" class="fa-solid fa-rotate"></i>
+                    <span>بروزرسانی</span>
+                </button>
             </div>
-            <button class="refresh-btn" onclick="fetchExirData()">به‌روزرسانی قیمت‌ها</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-6 w-full flex-grow">
+        
+        <!-- Search & Filter Bar -->
+        <div class="glass-card p-4 rounded-2xl mb-6 shadow-xl flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="relative w-full md:w-96">
+                <i class="fa-solid fa-search absolute right-3.5 top-3.5 text-gray-400"></i>
+                <input type="text" id="searchInput" oninput="filterCoins()" placeholder="جستجوی نام ارز (مثلاً بیت‌کوین، اتریوم، تتر...)" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl pr-10 pl-4 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition-all text-gray-200">
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+                <i class="fa-solid fa-shield-halved text-amber-400"></i>
+                <span>نرخ‌ها بر مبنای تومان (IRT) و داده‌های زنده صرافی نوبیتکس تنظیم شده‌اند.</span>
+            </div>
         </div>
 
-        <div id="crypto-grid" class="crypto-grid">
-            <div class="loading">در حال دریافت داده‌ها از صرافی اکسیر...</div>
+        <!-- Crypto Grid Container -->
+        <div id="crypto-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Loading Skeletons -->
+            <div class="glass-card p-5 rounded-2xl animate-pulse space-y-4">
+                <div class="h-6 bg-gray-800 rounded w-1/2"></div>
+                <div class="h-8 bg-gray-800 rounded w-3/4"></div>
+                <div class="h-4 bg-gray-800 rounded w-full"></div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl animate-pulse space-y-4">
+                <div class="h-6 bg-gray-800 rounded w-1/2"></div>
+                <div class="h-8 bg-gray-800 rounded w-3/4"></div>
+                <div class="h-4 bg-gray-800 rounded w-full"></div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl animate-pulse space-y-4">
+                <div class="h-6 bg-gray-800 rounded w-1/2"></div>
+                <div class="h-8 bg-gray-800 rounded w-3/4"></div>
+                <div class="h-4 bg-gray-800 rounded w-full"></div>
+            </div>
         </div>
-    </div>
+    </main>
 
+    <!-- Footer -->
+    <footer class="glass-card border-t border-amber-500/20 py-4 px-6 text-center text-xs text-gray-400 mt-10">
+        <p>کلیه حقوق برای صرافی ارز دیجیتال <span class="text-amber-400 font-bold">مهرسام گیمر ⭐</span> محفوظ است. | اتصال امن به Nobitex API</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
     <script>
-        let allCoinsData = [];
-        let usdtTomanPrice = 60000; 
+        let allMarketData = {};
 
-        async function fetchExirData() {
-            const grid = document.getElementById('crypto-grid');
-            const statusText = document.getElementById('status-text');
+        async function fetchNobitexData() {
+            const statusBadge = document.getElementById('connection-status');
+            const refreshIcon = document.getElementById('refresh-icon');
+            refreshIcon.classList.add('fa-spin');
+            
+            statusBadge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-ping"></span><span>در حال دریافت اطلاعات...</span>`;
+            statusBadge.className = "flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-medium";
+
+            // Using AllOrigins CORS Proxy wrapper for GitHub Pages compatibility
+            const targetUrl = 'https://api.nobitex.ir/v2/stats';
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
 
             try {
-                // استفاده از پروکسی امن برای عبور از خطای CORS مرورگر و گیت‌هاب
-                const targetUrl = 'https://api.exir.io/v2/tickers';
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
-                
                 const response = await fetch(proxyUrl);
-                if (!response.ok) throw new Error('خطا در دریافت پاسخ از سرور');
+                if (!response.ok) throw new Error('Network response was not ok');
                 
-                const json = await response.json();
-                const data = JSON.parse(json.contents);
+                const data = await response.json();
+                const parsedContent = JSON.parse(data.contents);
 
-                allCoinsData = Object.keys(data).map(symbol => {
-                    return {
-                        symbol: symbol.toUpperCase(),
-                        last: parseFloat(data[symbol].last || 0),
-                        high: parseFloat(data[symbol].high || 0),
-                        low: parseFloat(data[symbol].low || 0),
-                        volume: parseFloat(data[symbol].volume || 0)
-                    };
-                });
-
-                // استخراج نرخ تتر به تومان از صرافی اکسیر
-                const usdtPair = allCoinsData.find(c => c.symbol === 'USDT-IRT' || c.symbol === 'USDT-TMN');
-                if (usdtPair && usdtPair.last > 0) {
-                    usdtTomanPrice = usdtPair.last;
+                if (parsedContent.status === 'ok' && parsedContent.stats) {
+                    allMarketData = parsedContent.stats;
+                    renderCoins(allMarketData);
+                    
+                    statusBadge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span>متصل به نوبیتکس (بروز)</span>`;
+                    statusBadge.className = "flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium";
+                } else {
+                    throw new Error('Invalid data structure');
                 }
-
-                statusText.innerText = "متصل به اکسیر (" + new Date().toLocaleTimeString('fa-IR') + ")";
-                renderCoins(allCoinsData);
-
             } catch (error) {
-                console.error(error);
-                statusText.innerText = "خطا در اتصال به اکسیر";
-                grid.innerHTML = `<div class="error">خطا در برقراری ارتباط با صرافی اکسیر. لطفاً اینترنت خود را بررسی کنید یا چند لحظه دیگر دوباره تلاش کنید.</div>`;
+                console.error('Fetch error:', error);
+                statusBadge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span>خطای اتصال (اینترنت/پروکسی)</span>`;
+                statusBadge.className = "flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-medium";
+                
+                document.getElementById('crypto-container').innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-card rounded-2xl border border-rose-500/30">
+                        <i class="fa-solid fa-triangle-exclamation text-4xl text-rose-400 mb-3"></i>
+                        <h3 class="text-lg font-bold text-gray-200">خطا در برقراری ارتباط با نوبیتکس</h3>
+                        <p class="text-sm text-gray-400 mt-1">لطفاً اتصال اینترنت خود را بررسی کرده و روی دکمه بروزرسانی کلیک کنید.</p>
+                    </div>
+                `;
+            } finally {
+                refreshIcon.classList.remove('fa-spin');
             }
         }
 
-        function renderCoins(coins) {
-            const grid = document.getElementById('crypto-grid');
-            grid.innerHTML = '';
+        function renderCoins(stats) {
+            const container = document.getElementById('crypto-container');
+            container.innerHTML = '';
 
-            if (coins.length === 0) {
-                grid.innerHTML = `<div class="loading">هیچ ارزی با این مشخصات یافت نشد.</div>`;
+            const keys = Object.keys(stats);
+            if (keys.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400">هیچ جفت‌ارزی یافت نشد.</div>`;
                 return;
             }
 
-            coins.forEach(coin => {
-                let priceInToman = 0;
-                let basePriceDisplay = coin.last.toLocaleString();
+            keys.forEach(pairKey => {
+                const item = stats[pairKey];
+                const parts = pairKey.split('-');
+                const base = parts[0] ? parts[0].toUpperCase() : pairKey;
+                const quote = parts[1] ? parts[1].toUpperCase() : 'IRT';
 
-                if (coin.symbol.includes('-IRT') || coin.symbol.includes('-TMN')) {
-                    priceInToman = coin.last;
-                } else if (coin.symbol.includes('-USDT')) {
-                    priceInToman = coin.last * usdtTomanPrice;
+                // Convert Rial to Toman if quote is IRR / IRT
+                let latestPrice = parseFloat(item.latest || 0);
+                if (quote === 'IRR') {
+                    latestPrice = latestPrice / 10;
                 }
+                const change = parseFloat(item.dayChange || 0);
+                const isPositive = change >= 0;
 
-                const coinName = coin.symbol.split('-')[0];
-
-                const card = document.createElement('div');
-                card.className = 'crypto-card';
-                card.innerHTML = `
-                    <div class="crypto-header">
-                        <span class="crypto-name">${coinName}</span>
-                        <span class="crypto-symbol">${coin.symbol}</span>
-                    </div>
-                    <div class="crypto-prices">
-                        <div class="price-row">
-                            <span class="price-label">قیمت در اکسیر:</span>
-                            <span class="price-value">${basePriceDisplay}</span>
+                const cardHTML = `
+                    <div class="glass-card p-5 rounded-2xl shadow-xl hover:border-amber-500/50 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">${quote}</span>
+                                    <h3 class="text-lg font-black text-gray-100 mt-2">${base}</h3>
+                                </div>
+                                <div class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-coins"></i>
+                                </div>
+                            </div>
+                            <div class="my-4">
+                                <div class="text-2xl font-black text-gray-100 tracking-tight">
+                                    ${latestPrice.toLocaleString('fa-IR')} <span class="text-xs font-normal text-gray-400">تومان</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="price-row">
-                            <span class="price-label">معادل تقریبی تومان:</span>
-                            <span class="price-value price-toman">${priceInToman > 0 ? Math.round(priceInToman).toLocaleString() + ' تومان' : 'نامشخص'}</span>
+                        <div class="pt-3 border-t border-gray-800/80 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">تغییر 24 ساعته:</span>
+                            <span class="font-bold px-2 py-0.5 rounded-lg ${isPositive ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">
+                                ${isPositive ? '+' : ''}${change.toFixed(2)}%
+                            </span>
                         </div>
                     </div>
                 `;
-                grid.appendChild(card);
+                container.insertAdjacentHTML('beforeend', cardHTML);
             });
         }
 
         function filterCoins() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allCoinsData.filter(c => c.symbol.toLowerCase().includes(query));
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!allMarketData) return;
+
+            const filtered = {};
+            Object.keys(allMarketData).forEach(key => {
+                if (key.toLowerCase().includes(query)) {
+                    filtered[key] = allMarketData[key];
+                }
+            });
             renderCoins(filtered);
         }
 
-        fetchExirData();
-        setInterval(fetchExirData, 30000);
+        // Initial fetch on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchNobitexData();
+            // Auto refresh every 30 seconds
+            setInterval(fetchNobitexData, 30000);
+        });
     </script>
 </body>
 </html>
